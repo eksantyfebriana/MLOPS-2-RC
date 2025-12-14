@@ -15,7 +15,9 @@ RUN apt-get update \
 
 # Install Python deps first for layer caching (CPU-only torch wheel)
 COPY requirements.txt ./
-RUN PIP_EXTRA_INDEX_URL=https://download.pytorch.org/whl/cpu \
+# Ensure numpy present before heavy deps
+RUN pip install --no-cache-dir numpy==1.26.4 \
+ && PIP_EXTRA_INDEX_URL=https://download.pytorch.org/whl/cpu \
     pip install --no-cache-dir -r requirements.txt
 
 # Copy project and install package
