@@ -18,8 +18,10 @@ COPY requirements.txt ./
 RUN PIP_EXTRA_INDEX_URL=https://download.pytorch.org/whl/cpu \
     pip install --no-cache-dir -r requirements.txt
 
-# Copy project
+# Copy project and install package
 COPY . .
+RUN PIP_EXTRA_INDEX_URL=https://download.pytorch.org/whl/cpu \
+    pip install --no-cache-dir .
 
 EXPOSE 8000
 
