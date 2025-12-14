@@ -6,13 +6,6 @@ __pycache__
 *.sqlite3
 *.db
 optuna.db
-artifacts/m1_best/best_model.pt
-artifacts/m1_best/*.png
-artifacts/m1_best/*.html
-artifacts/m1/*.html
-artifacts/optuna-hyperparameter.png
-artifacts/*.pt
-artifacts/**/*.pt
 wandb
 .git
 .github
