@@ -15,7 +15,10 @@ class TransformerTinySLU(nn.Module):
         self.quantity_head = nn.Linear(d_model, num_quantities)
 
     def forward(self, x: torch.Tensor) -> dict[str, torch.Tensor]:  # type: ignore[override]
-        feats = self.proj(x)  # expects B, T, 128 input log-mel slices
+        # Input arrives as B, 1, n_mels, T from the dataset; reshape to B, T, n_mels for the encoder.
+        if x.dim() == 4:  # B, C=1, n_mels, T
+            x = x.squeeze(1).transpose(1, 2)
+        feats = self.proj(x)  # now B, T, 128
         enc = self.encoder(feats)
         weights = torch.softmax(self.attn(enc), dim=1)
         pooled = (enc * weights).sum(dim=1)

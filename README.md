@@ -2,7 +2,7 @@
 
 Kerangka tugas besar MLOps untuk SLU retail (produk & quantity) tanpa intent. Fokus pada reproducible pipeline, experiment tracking sederhana, CI, dan API inference (tanpa Docker).
 
-### Kenapa ada Typer?
+### Typer
 - Typer adalah library Python untuk bikin CLI dengan type hints sehingga argumen otomatis punya help/validasi.
 - Dipakai supaya semua langkah pipeline (ingest → preprocess → train → evaluate → hparam-search) konsisten lewat satu perintah `slu ...`, tanpa mengingat modul/flag terpisah.
 - Jalankan `slu --help` atau `slu train --help` untuk melihat opsi yang tersedia.
